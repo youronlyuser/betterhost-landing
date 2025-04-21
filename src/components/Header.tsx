@@ -2,6 +2,7 @@
 import React from 'react';
 import { Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -9,7 +10,7 @@ const Header = () => {
   return (
     <header className="border-b border-gray-200 bg-white sticky top-0 z-50">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <a href="#" className="text-2xl font-bold text-primary">BetterHost</a>
+        <Link to="/" className="text-2xl font-bold text-primary">BetterHost</Link>
         
         {/* Mobile Menu Button */}
         <div className="md:hidden">
@@ -25,7 +26,7 @@ const Header = () => {
         
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
-          <a href="#about" className="text-gray-600 hover:text-primary font-medium">Βιογραφικό</a>
+          <Link to="/blog" className="text-gray-600 hover:text-primary font-medium">Blog</Link>
           <a href="#services" className="text-gray-600 hover:text-primary font-medium">Υπηρεσίες</a>
           <a href="#contact">
             <Button className="bg-primary text-white hover:bg-primary/90">
@@ -39,13 +40,13 @@ const Header = () => {
           <div className="absolute top-full left-0 right-0 bg-white shadow-md md:hidden z-50 animate-fade-in">
             <div className="container mx-auto px-4 py-4">
               <nav className="flex flex-col gap-4">
-                <a 
-                  href="#about" 
+                <Link 
+                  to="/blog" 
                   className="text-gray-600 hover:text-primary py-2 border-b border-gray-100"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Βιογραφικό
-                </a>
+                  Blog
+                </Link>
                 <a 
                   href="#services" 
                   className="text-gray-600 hover:text-primary py-2 border-b border-gray-100"

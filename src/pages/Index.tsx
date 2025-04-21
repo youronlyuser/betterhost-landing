@@ -7,7 +7,6 @@ import PricingSection from '@/components/PricingSection';
 import HowItWorksSection from '@/components/HowItWorksSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
-import AboutSection from '@/components/AboutSection';
 
 const Index = () => {
   return (
@@ -16,7 +15,6 @@ const Index = () => {
       <main>
         <HeroSection />
         <ComparisonSection />
-        <AboutSection />
         <HowItWorksSection />
         <PricingSection />
         <ContactSection />
