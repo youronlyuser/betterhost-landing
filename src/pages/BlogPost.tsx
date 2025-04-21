@@ -1,10 +1,10 @@
-
 import React, { useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { blogPosts } from '@/lib/blog-data';
+import { styleBlogHtml } from '@/lib/html-content-styler';
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -14,7 +14,6 @@ const BlogPost = () => {
     return blogPosts.find(post => post.slug === slug);
   }, [slug]);
   
-  // If post not found, redirect to blog index
   React.useEffect(() => {
     if (!post && slug) {
       navigate('/blog');
@@ -25,6 +24,8 @@ const BlogPost = () => {
     return null;
   }
   
+  const styledContent = styleBlogHtml(post.content);
+
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
@@ -72,7 +73,7 @@ const BlogPost = () => {
       <Header />
       
       <main className="flex-1 container mx-auto px-4 py-12">
-        <article className="max-w-3xl mx-auto prose lg:prose-xl">
+        <article className="max-w-3xl mx-auto">
           <div className="mb-8">
             <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
             <div className="text-muted-foreground mb-6">
@@ -89,7 +90,10 @@ const BlogPost = () => {
             )}
           </div>
           
-          <div className="leading-relaxed" dangerouslySetInnerHTML={{ __html: post.content }} />
+          <div
+            className="prose prose-headings:font-semibold prose-headings:text-[#2D5BFF] prose-p:text-gray-700"
+            dangerouslySetInnerHTML={{ __html: styledContent }}
+          />
         </article>
       </main>
       
