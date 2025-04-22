@@ -2,10 +2,17 @@
 import React from 'react';
 import { Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
+
+  // Helper function to handle navigation
+  const getNavLink = (sectionId: string) => {
+    return isHomePage ? `#${sectionId}` : `/#${sectionId}`;
+  };
 
   return (
     <header className="border-b border-gray-200 bg-white sticky top-0 z-50">
@@ -26,9 +33,9 @@ const Header = () => {
         
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
-          <Link to="/blog" className="text-gray-600 hover:text-primary font-medium">Blog</Link>
-          <a href="#services" className="text-gray-600 hover:text-primary font-medium">Υπηρεσίες</a>
-          <a href="#contact">
+          <Link to="/blog" className="text-gray-600 hover:text-primary font-medium">Άρθρα</Link>
+          <a href={getNavLink('services')} className="text-gray-600 hover:text-primary font-medium">Υπηρεσίες</a>
+          <a href={getNavLink('contact')}>
             <Button className="bg-primary text-white hover:bg-primary/90">
               Επικοινωνία
             </Button>
@@ -45,17 +52,17 @@ const Header = () => {
                   className="text-gray-600 hover:text-primary py-2 border-b border-gray-100"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Blog
+                  Άρθρα
                 </Link>
                 <a 
-                  href="#services" 
+                  href={getNavLink('services')} 
                   className="text-gray-600 hover:text-primary py-2 border-b border-gray-100"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Υπηρεσίες
                 </a>
                 <a 
-                  href="#contact" 
+                  href={getNavLink('contact')} 
                   className="py-2"
                   onClick={() => setIsMenuOpen(false)}
                 >

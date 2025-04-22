@@ -1,9 +1,17 @@
 
 import React from 'react';
 import { Facebook, Instagram, Mail, MapPin, Phone } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Footer = () => {
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
+
+  // Helper function to handle navigation
+  const getNavLink = (sectionId: string) => {
+    return isHomePage ? `#${sectionId}` : `/#${sectionId}`;
+  };
+
   return (
     <footer className="bg-gray-900 text-white py-12">
       <div className="container mx-auto px-4">
@@ -33,16 +41,16 @@ const Footer = () => {
                 <Link to="/" className="text-gray-400 hover:text-white transition-colors">Αρχική</Link>
               </li>
               <li>
-                <Link to="/blog" className="text-gray-400 hover:text-white transition-colors">Blog</Link>
+                <Link to="/blog" className="text-gray-400 hover:text-white transition-colors">Άρθρα</Link>
               </li>
               <li>
-                <a href="#services" className="text-gray-400 hover:text-white transition-colors">Υπηρεσίες</a>
+                <a href={getNavLink('services')} className="text-gray-400 hover:text-white transition-colors">Υπηρεσίες</a>
               </li>
               <li>
-                <a href="#pricing" className="text-gray-400 hover:text-white transition-colors">Τιμές</a>
+                <a href={getNavLink('pricing')} className="text-gray-400 hover:text-white transition-colors">Τιμές</a>
               </li>
               <li>
-                <a href="#contact" className="text-gray-400 hover:text-white transition-colors">Επικοινωνία</a>
+                <a href={getNavLink('contact')} className="text-gray-400 hover:text-white transition-colors">Επικοινωνία</a>
               </li>
             </ul>
           </div>
