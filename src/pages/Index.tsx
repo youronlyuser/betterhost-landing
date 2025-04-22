@@ -7,20 +7,55 @@ import PricingSection from '@/components/PricingSection';
 import HowItWorksSection from '@/components/HowItWorksSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
+import { Helmet } from 'react-helmet-async';
 
 const Index = () => {
+  // Structured data for rich snippets
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "BetterHost",
+    "description": "Υπηρεσίες διαχείρισης και βελτιστοποίησης καταχωρήσεων Airbnb",
+    "image": "https://lovable.dev/opengraph-image-p98pqg.png",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Αθήνα",
+      "addressCountry": "GR"
+    },
+    "priceRange": "€799 - €1,199",
+    "telephone": "+30 210 1234567",
+    "email": "info@betterhost.gr",
+    "offers": {
+      "@type": "AggregateOffer",
+      "lowPrice": "799",
+      "highPrice": "1199",
+      "priceCurrency": "EUR"
+    }
+  };
+
   return (
-    <div className="min-h-screen flex flex-col">
-      <Header />
-      <main>
-        <HeroSection />
-        <ComparisonSection />
-        <HowItWorksSection />
-        <PricingSection />
-        <ContactSection />
-      </main>
-      <Footer />
-    </div>
+    <>
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(structuredData)}
+        </script>
+        <link rel="canonical" href="https://betterhost.gr/" />
+      </Helmet>
+      
+      <div className="min-h-screen flex flex-col" itemScope itemType="https://schema.org/ProfessionalService">
+        <Header />
+        <main>
+          <article>
+            <HeroSection />
+            <ComparisonSection />
+            <HowItWorksSection />
+            <PricingSection />
+            <ContactSection />
+          </article>
+        </main>
+        <Footer />
+      </div>
+    </>
   );
 };
 

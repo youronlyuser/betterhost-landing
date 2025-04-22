@@ -1,6 +1,21 @@
 
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+
 User-agent: Googlebot
 Allow: /
+Allow: /*.js$
+Allow: /*.css$
+
+User-agent: Googlebot-Image
+Allow: /images/
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.gif$
+Allow: /*.png$
+Allow: /*.webp$
 
 User-agent: Bingbot
 Allow: /
@@ -11,7 +26,6 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
-User-agent: *
-Allow: /
-
 Sitemap: https://betterhost.gr/sitemap.xml
+
+# Crawl-delay: 10
