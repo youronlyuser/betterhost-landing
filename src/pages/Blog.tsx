@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+
+import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -10,6 +11,11 @@ import { blogPosts } from '@/lib/blog-data';
 
 const Blog = () => {
   const [searchQuery, setSearchQuery] = useState('');
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const filteredPosts = blogPosts.filter(post => 
     post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
